@@ -1,39 +1,59 @@
-# Animexus 🚀
+# Animexus-V2
 
-Animexus is a premium, high-performance anime discovery platform built with Next.js 15 and the Jikan API. It features a sleek "Cyber-Noir" aesthetic with smooth animations and deep character insights.
+Animexus-V2 is a high-performance, premium anime discovery platform built with Next.js 15 and the Jikan API. It features a sleek Cyber-Noir aesthetic, real-time search, and a personalized tracking system.
 
-## ✨ Features
+## 🚀 Key Features
 
-- **Trending & Newest Content**: Stay up-to-date with the latest high-rated anime directly on the home page.
-- **Advanced Search & Filtering**: Find exactly what you're looking for by genre, type, status, and year.
-- **My Anime List**: Save your favorite titles to your personal collection with custom status tracking (Watching, Planned, Completed).
-- **Deep Insights**: Detailed information for every anime, including characters, trailers, and related media.
-- **NSFW Content Detection**: Intelligent tagging for mature content to ensure a safe browsing experience.
-- **Responsive Design**: Fully optimized for mobile, tablet, and desktop viewing.
+- **Cyber-Noir UI**: A distinctive dark-themed interface with neon accents and smooth motion interactions.
+- **Real-time Discovery**: Instant search results and trending content fetching via the Jikan API.
+- **Personalized List**: Add, track, and manage your anime collection (Watching, Plan to Watch, Completed) with local storage persistence.
+- **NSFW Content Detection**: Automatic tagging for adult-rated content for a safe browsing experience.
+- **Responsive Design**: Site-wide "Rounded-Full" aesthetic for a modern mobile-first experience.
+- **Detailed Insights**: High-resolution posters, character tooltips, and related media links.
 
-## 🛠️ Tech Stack
+## 🛠 Tech Stack
 
 - **Framework**: Next.js 15 (App Router)
-- **Styling**: Tailwind CSS
+- **Styling**: Tailwind CSS 4
 - **Animations**: Framer Motion
 - **Icons**: Lucide React
-- **Notifications**: Sonner (Custom Dark Mode)
-- **API**: Jikan API (Unofficial MyAnimeList API)
+- **API**: Jikan API (MAL)
+- **State Management**: React Hooks & Local Storage
+- **UI Components**: Radix UI & Sonner
 
-## 🎨 Aesthetic
+## 🏗 Setup & Installation
 
-Animexus follows a distinctive **Cyber-Noir** design language:
-- **Rounded-Full Elements**: Site-wide rounded search bars and buttons for a modern feel.
-- **Vibrant Accents**: Primary blue accents against a deep, dark background.
-- **Glassmorphism**: Backdrop blurs and subtle borders for depth and elegance.
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/Perfee123/Animexus-V2.git
+   ```
 
-## 🚀 Getting Started
+2. **Install dependencies**:
+   ```bash
+   pnpm install
+   ```
 
-1. Clone the repository
-2. Install dependencies: `pnpm install`
-3. Run the development server: `npm run dev`
-4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+3. **Run the development server**:
+   ```bash
+   pnpm dev
+   ```
+
+4. **Build for production**:
+   ```bash
+   pnpm build
+   ```
+
+## 🔧 Deployment (Vercel)
+
+If you encounter a `Headless installation requires a pnpm-lock.yaml file` error on Vercel:
+
+1. **Ensure you have a `pnpm-lock.yaml` file** in your repository. Run `pnpm install` locally and commit the lockfile.
+2. **Framework Settings**: In Vercel Project Settings, ensure the **Framework Preset** is set to **Next.js** (not Vite).
+3. **Node.js Version**: Use Node.js 20 or higher.
+
+## 📄 License
+
+This project is licensed under the MIT License.
 
 ---
-
-Developed with ❤️ by [Animexus Team](https://github.com/PERFEE123)
+Created with ❤️ by PERFEE123
