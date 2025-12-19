@@ -1,9 +1,10 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Loader2, LayoutGrid } from "lucide-react";
+import { Loader2, Shapes } from "lucide-react";
 import { getAnimeGenres } from "@/lib/jikan";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function GenreExplorer() {
   const [genres, setGenres] = useState<any[]>([]);
@@ -13,7 +14,9 @@ export default function GenreExplorer() {
     async function fetchData() {
       try {
         const data = await getAnimeGenres();
-        setGenres(data.data.slice(0, 18));
+        // Filter out Hentai from the main explorer, or keep it last
+        const filtered = data.data.filter((g: any) => g.mal_id !== 12).slice(0, 18);
+        setGenres(filtered);
       } catch (error) {
         console.error("Failed to fetch genres:", error);
       } finally {
@@ -26,36 +29,42 @@ export default function GenreExplorer() {
   return (
     <section className="w-full">
       <div className="flex items-center gap-3 mb-8">
-        <div className="p-2 rounded-xl bg-primary/10 border border-primary/20">
-          <LayoutGrid className="h-5 w-5 text-primary" />
+        <div className="p-3 rounded-2xl bg-primary/10 border border-primary/20 shadow-[0_0_20px_rgba(59,130,246,0.2)]">
+          <Shapes className="h-6 w-6 text-primary" />
         </div>
-        <h2 className="text-2xl font-bold text-white tracking-tight">
-          Explore Genres
+        <h2 className="text-3xl font-black text-white tracking-tighter uppercase">
+          Explore <span className="text-primary">Genres</span>
         </h2>
       </div>
 
       <div 
-        className="flex flex-wrap gap-3 p-6 rounded-3xl bg-card border border-border shadow-2xl"
+        className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 p-8 rounded-[3rem] bg-card border border-border shadow-2xl relative overflow-hidden"
       >
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 pointer-events-none" />
         {isLoading ? (
-          <div className="flex items-center justify-start gap-3 text-muted-foreground py-2">
-            <Loader2 className="h-5 w-5 animate-spin text-primary" />
-            <span className="text-sm font-medium">Categorizing anime...</span>
+          <div className="col-span-full flex items-center justify-center gap-3 text-muted-foreground py-10">
+            <Loader2 className="h-6 w-6 animate-spin text-primary" />
+            <span className="text-lg font-bold animate-pulse">Categorizing anime...</span>
           </div>
         ) : (
           genres.map((genre, idx) => (
-            <motion.button
-              key={genre.mal_id}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: idx * 0.03 }}
-              whileHover={{ scale: 1.05, backgroundColor: 'rgba(168, 85, 247, 0.1)' }}
-              whileTap={{ scale: 0.95 }}
-              className="px-4 py-2 rounded-xl text-sm font-semibold bg-white/5 border border-white/10 text-white/80 hover:text-primary hover:border-primary/30 transition-all duration-300"
-            >
-              {genre.name}
-              <span className="ml-2 text-[10px] text-muted-foreground font-normal">{genre.count}</span>
-            </motion.button>
+            <Link key={genre.mal_id} href={`/explore?genre=${genre.mal_id}`}>
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: idx * 0.02 }}
+                whileHover={{ scale: 1.05, backgroundColor: 'rgba(59, 130, 246, 0.1)', borderColor: 'rgba(59, 130, 246, 0.3)' }}
+                whileTap={{ scale: 0.95 }}
+                className="group p-4 rounded-2xl bg-white/5 border border-white/10 text-center transition-all duration-300 cursor-pointer"
+              >
+                <p className="text-sm font-black text-white/80 group-hover:text-primary transition-colors">
+                  {genre.name}
+                </p>
+                <p className="text-[10px] text-muted-foreground font-medium group-hover:text-white/60">
+                  {genre.count} Titles
+                </p>
+              </motion.div>
+            </Link>
           ))
         )}
       </div>
