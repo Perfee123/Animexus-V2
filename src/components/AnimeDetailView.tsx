@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Star, Play, Info, Users, Clock, Calendar, ChevronRight, Share2, Heart, ExternalLink, Youtube, Twitter, CheckCircle2 } from 'lucide-react';
 import { useMyList, ListStatus } from '@/hooks/useMyList';
