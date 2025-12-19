@@ -1,55 +1,51 @@
 import React from 'react';
+import { Info, ShieldCheck, Sparkles, Zap } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const InfoCards = () => {
-  return (
-    <section className="grid md:grid-cols-2 gap-6 items-stretch mt-10">
-      {/* What is Anime? Card */}
-      <div 
-        className="glass rounded-[15px] p-6 flex flex-col justify-center"
-        style={{
-          backgroundColor: 'rgba(255, 255, 255, 0.06)',
-          backdropFilter: 'blur(20px)',
-          border: '1px solid rgba(255, 255, 255, 0.1)',
-          boxShadow: '0 10px 30px rgba(0, 0, 0, 0.35), 0 0 30px rgba(163, 230, 53, 0.05)'
-        }}
-      >
-        <h2 className="text-2xl font-semibold text-white">What is Anime?</h2>
-        <p className="mt-3 text-white/80 text-[16px] leading-[1.6]">
-          Anime is a style of animation that originated in Japan, known for its vibrant art, imaginative worlds, and rich storytelling across genres. Its history dates back to early 20th‑century experimental films, blossoming in the post‑war era with pioneers like Osamu Tezuka. Today, anime spans TV series, films, and OVAs, captivating global audiences with unique aesthetics and cultural depth.
-        </p>
-        <div className="mt-4">
-          <a 
-            href="/ratings" 
-            className="inline-block rounded-[12px] px-4 py-2 bg-gradient-to-r from-teal-400 to-lime-400 text-black font-semibold text-sm shadow-[0_0_20px_rgba(34,197,94,0.35)] hover:brightness-110 hover:scale-105 transition-transform duration-200"
-          >
-            Explore Ratings
-          </a>
-        </div>
-      </div>
+  const cards = [
+    {
+      title: "What is Anime?",
+      description: "Anime is a style of animation originating from Japan, known for vibrant art and complex storytelling. It encompasses many genres and has a massive global following.",
+      icon: Sparkles,
+      color: "text-primary",
+      bg: "bg-primary/5"
+    },
+    {
+      title: "About Animexus",
+      description: "Animexus is your premium gateway to the world of anime. We provide up-to-date information on trending titles, ratings, and detailed character insights.",
+      icon: Zap,
+      color: "text-secondary",
+      bg: "bg-secondary/5"
+    }
+  ];
 
-      {/* About Animexus Card */}
-      <div 
-        className="glass rounded-[15px] p-6 flex flex-col justify-center"
-        style={{
-          backgroundColor: 'rgba(255, 255, 255, 0.06)',
-          backdropFilter: 'blur(20px)',
-          border: '1px solid rgba(255, 255, 255, 0.1)',
-          boxShadow: '0 10px 30px rgba(0, 0, 0, 0.35), 0 0 30px rgba(163, 230, 53, 0.05)'
-        }}
-      >
-        <h2 className="text-2xl font-semibold text-white">About Animexus</h2>
-        <p className="mt-3 text-white/80 text-[16px] leading-[1.6]">
-          Animexus is a web platform dedicated to anime discovery, bringing together trending titles, top-rated series, and detailed information through the Jikan API. Designed with a sleek, glass-styled interface, it offers fans access to genres, ratings, and insights, creating a seamless hub for exploration and appreciation of anime culture.
-        </p>
-        <div className="mt-4">
-          <a 
-            href="/guide" 
-            className="inline-block rounded-[12px] px-4 py-2 bg-gradient-to-r from-teal-400 to-lime-400 text-black font-semibold text-sm shadow-[0_0_20px_rgba(34,197,94,0.35)] hover:brightness-110 hover:scale-105 transition-transform duration-200"
-          >
-            Learn More
-          </a>
-        </div>
-      </div>
+  return (
+    <section className="grid md:grid-cols-2 gap-8">
+      {cards.map((card, idx) => (
+        <motion.div
+          key={idx}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: idx * 0.1 }}
+          viewport={{ once: true }}
+          className="relative group p-8 rounded-3xl bg-card border border-border overflow-hidden"
+        >
+          <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:scale-110 transition-transform">
+            <card.icon size={120} className={card.color} />
+          </div>
+          
+          <div className="relative space-y-4">
+            <div className={`w-12 h-12 rounded-2xl ${card.bg} flex items-center justify-center`}>
+              <card.icon size={24} className={card.color} />
+            </div>
+            <h3 className="text-2xl font-bold text-white">{card.title}</h3>
+            <p className="text-muted-foreground leading-relaxed">
+              {card.description}
+            </p>
+          </div>
+        </motion.div>
+      ))}
     </section>
   );
 };
