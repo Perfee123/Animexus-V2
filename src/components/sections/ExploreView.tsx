@@ -83,17 +83,21 @@ const ExploreView = () => {
     const currentPage = reset ? 1 : page;
     try {
       let data;
-      const hasFilters = query || selectedGenre || selectedType || selectedStatus || selectedYear;
+      const hasFilters = query || 
+        (selectedGenre && selectedGenre !== 'all') || 
+        (selectedType && selectedType !== 'all') || 
+        (selectedStatus && selectedStatus !== 'all') || 
+        (selectedYear && selectedYear !== 'all');
 
       if (!hasFilters) {
         // Show most trending and new stuff by default
         data = await getNewestHighRatedAnime(currentPage);
       } else {
         let params = "";
-        if (selectedGenre) params += `&genres=${selectedGenre}`;
-        if (selectedType) params += `&type=${selectedType}`;
-        if (selectedStatus) params += `&status=${selectedStatus}`;
-        if (selectedYear) params += `&start_date=${selectedYear}-01-01`;
+        if (selectedGenre && selectedGenre !== 'all') params += `&genres=${selectedGenre}`;
+        if (selectedType && selectedType !== 'all') params += `&type=${selectedType}`;
+        if (selectedStatus && selectedStatus !== 'all') params += `&status=${selectedStatus}`;
+        if (selectedYear && selectedYear !== 'all') params += `&start_date=${selectedYear}-01-01`;
 
         data = await searchAnime(query, currentPage, params);
       }
