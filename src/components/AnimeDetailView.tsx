@@ -375,5 +375,4 @@ export default function AnimeDetailView({ anime, characters }: AnimeDetailViewPr
         </div>
       </div>
     );
-  );
 }
