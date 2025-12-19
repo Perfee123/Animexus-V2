@@ -131,15 +131,15 @@ const ExploreView = () => {
             </p>
           </motion.div>
 
-          <div className="max-w-3xl mx-auto relative group">
-            <input
-              type="text"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              onKeyDown={(e) => e.key === 'Enter' && handleSearch(true)}
-              placeholder="Search anime..."
-              className="w-full bg-white/5 border-2 border-white/10 rounded-full py-6 px-10 text-xl text-white placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 transition-all backdrop-blur-xl"
-            />
+            <div className="max-w-2xl mx-auto relative group">
+              <input
+                type="text"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                onKeyDown={(e) => e.key === 'Enter' && handleSearch(true)}
+                placeholder="Search anime..."
+                className="w-full bg-white/5 border-2 border-white/10 rounded-full py-6 px-10 text-xl text-white placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 transition-all backdrop-blur-xl"
+              />
             <button 
               onClick={() => handleSearch(true)}
               className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center transition-transform hover:scale-110 active:scale-95 shadow-lg shadow-primary/20"
