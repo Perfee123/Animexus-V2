@@ -1,61 +1,73 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { Loader2, TrendingUp } from "lucide-react";
+import React, { useEffect, useState } from "react";
+import { TrendingUp, ArrowRight, Loader2 } from "lucide-react";
+import { motion } from "framer-motion";
 import { getTopAnime } from "@/lib/jikan";
 import { AnimeCard } from "@/components/AnimeCard";
-import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function TopRatedGrid() {
   const [animeList, setAnimeList] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    async function fetchData() {
+    const fetchTopAnime = async () => {
       try {
-        const data = await getTopAnime();
+        const data = await getTopAnime(1);
         setAnimeList(data.data.slice(0, 12));
       } catch (error) {
-        console.error("Failed to fetch top anime:", error);
+        console.error(error);
       } finally {
         setIsLoading(false);
       }
-    }
-    fetchData();
+    };
+
+    fetchTopAnime();
   }, []);
 
+  if (isLoading) {
+    return (
+      <div className="flex flex-col items-center justify-center py-24 gap-4">
+        <Loader2 className="h-12 w-12 animate-spin text-primary" />
+        <p className="text-muted-foreground font-medium animate-pulse">Loading top rated anime...</p>
+      </div>
+    );
+  }
+
   return (
-    <section className="w-full py-12">
-      <div className="flex items-center justify-between mb-8">
-        <div className="flex items-center gap-3">
-          <div className="p-2 rounded-xl bg-lime-400/10 border border-lime-400/20">
-            <TrendingUp className="h-5 w-5 text-lime-400" />
-          </div>
-          <h2 className="text-2xl font-bold text-white tracking-tight">
-            Top Rated Anime
+    <section className="space-y-8">
+      <div className="flex items-center justify-between">
+        <div className="space-y-1">
+          <h2 className="text-3xl font-extrabold text-white flex items-center gap-3">
+            <TrendingUp className="text-primary" size={32} />
+            Trending Now
           </h2>
+          <p className="text-muted-foreground font-medium">The most popular titles this week</p>
         </div>
-        <button className="text-sm font-semibold text-teal-400 hover:text-teal-300 transition-colors">
+        
+        <Link 
+          href="/trending" 
+          className="group flex items-center gap-2 text-sm font-bold text-primary hover:text-primary/80 transition-colors"
+        >
           View All
-        </button>
+          <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+        </Link>
       </div>
 
-      {isLoading ? (
-        <div className="py-20 flex flex-col items-center justify-center gap-4 text-white/40">
-          <Loader2 className="h-10 w-10 animate-spin text-teal-400" />
-          <p className="text-sm font-medium animate-pulse">Fetching global rankings...</p>
-        </div>
-      ) : (
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6"
-        >
-          {animeList.map((anime) => (
-            <AnimeCard key={anime.mal_id} anime={anime} />
-          ))}
-        </motion.div>
-      )}
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 md:gap-8">
+        {animeList.map((anime, index) => (
+          <motion.div
+            key={anime.mal_id}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.05 }}
+            viewport={{ once: true }}
+          >
+            <AnimeCard anime={anime} />
+          </motion.div>
+        ))}
+      </div>
     </section>
   );
 }
