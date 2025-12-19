@@ -7,13 +7,13 @@ import { motion } from 'framer-motion';
 import { History, CheckCircle2, AlertCircle, Clock } from 'lucide-react';
 
 export default function UpdatesPage() {
-  const versions = [
-    { version: 'V1.0.10', date: 'Dec 10, 2025', changes: ['Enhanced Hero Slider with Swiper', 'Improved Anime Detail View', 'Added character tooltips'], status: 'Current' },
-    { version: 'V1.0.9', date: 'Nov 25, 2025', changes: ['Optimized Jikan API calls', 'Fixed search grid spacing'], status: 'Previous' },
-    { version: 'V1.0.8', date: 'Nov 10, 2025', changes: ['Redesigned navigation bar', 'Added My List functionality'], status: 'Previous' },
-    { version: 'V1.0.5', date: 'Oct 15, 2025', changes: ['Implemented responsive layout for mobile', 'Added Framer Motion animations'], status: 'Previous' },
-    { version: 'V1.0.0', date: 'Aug 01, 2025', changes: ['Initial release of Animexus'], status: 'Birth' },
-  ];
+    const versions = [
+      { version: 'V2.0.5', date: 'Dec 10, 2025', changes: ['Redesigned entire UI with Cyber-Noir aesthetic', 'Converted My List to a full Explore page', 'Added high-quality Hero Slider', 'Implemented character detail tooltips', 'Added Privacy Policy & Terms of Service'], status: 'Current' },
+      { version: 'V1.0.10', date: 'Nov 25, 2025', changes: ['Enhanced Hero Slider with Swiper', 'Improved Anime Detail View', 'Added character tooltips'], status: 'Previous' },
+      { version: 'V1.0.9', date: 'Nov 10, 2025', changes: ['Optimized Jikan API calls', 'Fixed search grid spacing'], status: 'Previous' },
+      { version: 'V1.0.8', date: 'Oct 15, 2025', changes: ['Redesigned navigation bar', 'Added My List functionality'], status: 'Previous' },
+      { version: 'V1.0.0', date: 'Aug 01, 2025', changes: ['Initial release of Animexus'], status: 'Birth' },
+    ];
 
   return (
     <div className="min-h-screen flex flex-col">
