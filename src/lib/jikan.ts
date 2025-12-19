@@ -1,37 +1,42 @@
 const JIKAN_BASE_URL = 'https://api.jikan.moe/v4';
 
+async function fetchWithRetry(url: string, retries = 3, delay = 1000) {
+  for (let i = 0; i < retries; i++) {
+    try {
+      const res = await fetch(url, { next: { revalidate: 3600 } });
+      if (res.status === 429) {
+        await new Promise(resolve => setTimeout(resolve, delay * (i + 1)));
+        continue;
+      }
+      if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+      return await res.json();
+    } catch (error) {
+      if (i === retries - 1) throw error;
+      await new Promise(resolve => setTimeout(resolve, delay * (i + 1)));
+    }
+  }
+}
+
 export async function getTopAnime(page = 1) {
-  const res = await fetch(`${JIKAN_BASE_URL}/top/anime?page=${page}`);
-  if (!res.ok) throw new Error('Failed to fetch top anime');
-  return res.json();
+  return fetchWithRetry(`${JIKAN_BASE_URL}/top/anime?page=${page}`);
 }
 
 export async function getOngoingAnime(page = 1) {
-  const res = await fetch(`${JIKAN_BASE_URL}/seasons/now?page=${page}`);
-  if (!res.ok) throw new Error('Failed to fetch ongoing anime');
-  return res.json();
+  return fetchWithRetry(`${JIKAN_BASE_URL}/seasons/now?page=${page}`);
 }
 
-export async function searchAnime(query: string, page = 1) {
-  const res = await fetch(`${JIKAN_BASE_URL}/anime?q=${query}&page=${page}`);
-  if (!res.ok) throw new Error('Failed to search anime');
-  return res.json();
+export async function searchAnime(query: string, page = 1, params = "") {
+  return fetchWithRetry(`${JIKAN_BASE_URL}/anime?q=${query}&page=${page}${params}`);
 }
 
 export async function getAnimeDetails(id: string) {
-  const res = await fetch(`${JIKAN_BASE_URL}/anime/${id}/full`);
-  if (!res.ok) throw new Error('Failed to fetch anime details');
-  return res.json();
+  return fetchWithRetry(`${JIKAN_BASE_URL}/anime/${id}/full`);
 }
 
 export async function getAnimeCharacters(id: string) {
-  const res = await fetch(`${JIKAN_BASE_URL}/anime/${id}/characters`);
-  if (!res.ok) throw new Error('Failed to fetch anime characters');
-  return res.json();
+  return fetchWithRetry(`${JIKAN_BASE_URL}/anime/${id}/characters`);
 }
 
 export async function getAnimeGenres() {
-  const res = await fetch(`${JIKAN_BASE_URL}/genres/anime`);
-  if (!res.ok) throw new Error('Failed to fetch genres');
-  return res.json();
+  return fetchWithRetry(`${JIKAN_BASE_URL}/genres/anime`);
 }
