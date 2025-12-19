@@ -37,26 +37,26 @@ const Navigation = () => {
               const Icon = link.icon;
               const isActive = pathname === link.href;
               return (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  className={cn(
-                    "relative px-4 py-2 text-sm font-black uppercase tracking-[0.2em] transition-colors rounded-md group",
-                    isActive ? "text-primary" : "text-muted-foreground hover:text-white"
-                  )}
-                >
-                  <div className="flex items-center gap-2">
-                    <Icon size={16} className={cn(isActive && "text-primary")} />
-                    {link.name}
-                  </div>
-                  {isActive && (
-                    <motion.div
-                      layoutId="nav-active"
-                      className="absolute inset-0 bg-primary/10 rounded-md -z-10"
-                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                    />
-                  )}
-                </Link>
+                  <Link
+                    key={link.name}
+                    href={link.href}
+                    className={cn(
+                      "relative px-4 py-2 text-sm font-black uppercase tracking-[0.2em] transition-colors rounded-full group",
+                      isActive ? "text-primary" : "text-muted-foreground hover:text-white"
+                    )}
+                  >
+                    <div className="flex items-center gap-2">
+                      <Icon size={16} className={cn(isActive && "text-primary")} />
+                      {link.name}
+                    </div>
+                    {isActive && (
+                      <motion.div
+                        layoutId="nav-active"
+                        className="absolute inset-0 bg-primary/10 rounded-full -z-10"
+                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                      />
+                    )}
+                  </Link>
               );
             })}
           </nav>
