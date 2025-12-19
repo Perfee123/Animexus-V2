@@ -55,7 +55,7 @@ const ExploreView = () => {
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
 
-  const years = Array.from({ length: 30 }, (_, i) => (new Date().getFullYear() - i).toString());
+    const years = Array.from({ length: 50 }, (_, i) => (new Date().getFullYear() - i).toString());
 
   useEffect(() => {
     const fetchGenres = async () => {
