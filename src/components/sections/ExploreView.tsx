@@ -89,26 +89,29 @@ const ExploreView = () => {
         (selectedStatus && selectedStatus !== 'all') || 
         (selectedYear && selectedYear !== 'all');
 
-      if (!hasFilters) {
-        // Show most trending and new stuff by default
-        data = await getNewestHighRatedAnime(currentPage);
-      } else {
-        let params = "";
-        // Jikan v4: order_by works best when query is empty
-        if (!query) {
-          params += "&order_by=score&sort=desc";
+        if (!hasFilters) {
+          // Show most trending and new stuff by default
+          data = await getNewestHighRatedAnime(currentPage);
         } else {
-          // If there is a query, we still try to order by score to satisfy "top rated"
+          let params = "";
+          
+          // Always prioritize top rated when filtering
           params += "&order_by=score&sort=desc";
-        }
-        
-        if (selectedGenre && selectedGenre !== 'all') params += `&genres=${selectedGenre}`;
-        if (selectedType && selectedType !== 'all') params += `&type=${selectedType}`;
-        if (selectedStatus && selectedStatus !== 'all') params += `&status=${selectedStatus}`;
-        if (selectedYear && selectedYear !== 'all') params += `&start_date=${selectedYear}-01-01`;
+          
+          if (selectedGenre && selectedGenre !== 'all') params += `&genres=${selectedGenre}`;
+          if (selectedType && selectedType !== 'all') params += `&type=${selectedType}`;
+          if (selectedStatus && selectedStatus !== 'all') params += `&status=${selectedStatus}`;
+          
+          if (selectedYear && selectedYear !== 'all') {
+            params += `&start_date=${selectedYear}-01-01&end_date=${selectedYear}-12-31`;
+          } else if (!query) {
+            // If no year and no query, prioritize recent (last 2 years) to keep "newest" priority
+            const currentYear = new Date().getFullYear();
+            params += `&start_date=${currentYear - 1}-01-01`;
+          }
 
-        data = await searchAnime(query, currentPage, params);
-      }
+          data = await searchAnime(query, currentPage, params);
+        }
 
       if (reset) {
         setResults(data.data || []);
