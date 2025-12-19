@@ -26,12 +26,6 @@ const Navigation = () => {
             href="/" 
             className="flex items-center gap-2 group transition-all"
           >
-            <motion.div
-              whileHover={{ scale: 1.1, rotate: 5 }}
-              className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center neon-glow"
-            >
-              <div className="w-6 h-6 border-2 border-white rounded-md" />
-            </motion.div>
             <span className="font-bold tracking-tighter text-white text-2xl">
               Anime<span className="text-primary">xus</span>
             </span>
