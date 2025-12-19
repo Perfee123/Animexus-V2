@@ -15,13 +15,15 @@ export default function MyListPage() {
   const { list, removeItem } = useMyList();
   const [filter, setFilter] = React.useState<ListStatus | 'All'>('All');
 
-  const handleRemove = (id: number, title: string) => {
-    removeItem(id);
-    toast.error(`"${title}" deleted from your list`, {
-      description: "It has been removed from your collection.",
-      icon: <Trash2 size={16} />,
-    });
-  };
+    const handleRemove = (id: number, title: string) => {
+      removeItem(id);
+      toast.error(`"${title}" deleted`, {
+        description: "Removed from your list",
+        icon: <Trash2 size={16} />,
+        className: "bg-black border-red-500/20 text-white",
+        descriptionClassName: "text-red-400",
+      });
+    };
 
   const filteredList = filter === 'All' 
     ? list 
