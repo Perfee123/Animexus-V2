@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { TrendingUp, ArrowRight, Loader2 } from "lucide-react";
+import { Star, ArrowRight, Loader2 } from "lucide-react";
 import { motion } from "framer-motion";
 import { getTopAnime } from "@/lib/jikan";
 import { AnimeCard } from "@/components/AnimeCard";
