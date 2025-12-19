@@ -1,4 +1,4 @@
-import { getTopAnime } from "@/lib/jikan";
+import { getTopAnime, getNewestHighRatedAnime } from "@/lib/jikan";
 import Navigation from "@/components/sections/navigation";
 import MaintenanceBanner from "@/components/sections/maintenance-banner";
 import HeroSlider from "@/components/sections/HeroSlider";
@@ -9,8 +9,11 @@ import InfoCards from "@/components/sections/info-cards";
 import Footer from "@/components/sections/footer";
 
 export default async function Home() {
-  const trendingData = await getTopAnime(1);
+  const trendingData = await getNewestHighRatedAnime(1);
   const trending = trendingData.data?.slice(0, 10) || [];
+  
+  const topRatedData = await getTopAnime(1);
+  const topRated = topRatedData.data?.slice(0, 12) || [];
 
   return (
     <div className="min-h-screen flex flex-col">
