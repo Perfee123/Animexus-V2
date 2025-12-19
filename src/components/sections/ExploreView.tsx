@@ -82,13 +82,22 @@ const ExploreView = () => {
     setLoading(true);
     const currentPage = reset ? 1 : page;
     try {
-      let params = "";
-      if (selectedGenre) params += `&genres=${selectedGenre}`;
-      if (selectedType) params += `&type=${selectedType}`;
-      if (selectedStatus) params += `&status=${selectedStatus}`;
-      if (selectedYear) params += `&start_date=${selectedYear}-01-01`;
+      let data;
+      const hasFilters = query || selectedGenre || selectedType || selectedStatus || selectedYear;
 
-      const data = await searchAnime(query, currentPage, params);
+      if (!hasFilters) {
+        // Show ongoing/trending if no filters
+        data = await getOngoingAnime(currentPage);
+      } else {
+        let params = "";
+        if (selectedGenre) params += `&genres=${selectedGenre}`;
+        if (selectedType) params += `&type=${selectedType}`;
+        if (selectedStatus) params += `&status=${selectedStatus}`;
+        if (selectedYear) params += `&start_date=${selectedYear}-01-01`;
+
+        data = await searchAnime(query, currentPage, params);
+      }
+
       if (reset) {
         setResults(data.data || []);
       } else {
