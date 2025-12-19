@@ -3,10 +3,44 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, Filter, SlidersHorizontal, ChevronRight, X, Loader2 } from 'lucide-react';
+import { Search, Filter, SlidersHorizontal, ChevronRight, X, Loader2, ChevronDown, Calendar } from 'lucide-react';
 import { searchAnime, getAnimeGenres } from '@/lib/jikan';
 import { AnimeCard } from '@/components/AnimeCard';
 import { cn } from '@/lib/utils';
+import * as Select from '@radix-ui/react-select';
+
+const CustomSelect = ({ value, onValueChange, placeholder, options, icon: Icon }: any) => (
+  <Select.Root value={value} onValueChange={onValueChange}>
+    <Select.Trigger className="flex items-center justify-between gap-3 bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-primary/50 transition-all hover:bg-white/10 min-w-[140px]">
+      <div className="flex items-center gap-2">
+        {Icon && <Icon size={14} className="text-primary" />}
+        <Select.Value placeholder={placeholder} />
+      </div>
+      <Select.Icon>
+        <ChevronDown size={14} className="text-muted-foreground" />
+      </Select.Icon>
+    </Select.Trigger>
+
+    <Select.Portal>
+      <Select.Content className="z-50 overflow-hidden bg-[#0a0a0c] border border-white/10 rounded-xl shadow-2xl backdrop-blur-xl animate-in fade-in zoom-in-95 duration-200">
+        <Select.ScrollUpButton className="flex items-center justify-center h-6 bg-white/5 text-white cursor-default">
+          <ChevronDown className="rotate-180" size={14} />
+        </Select.ScrollUpButton>
+        <Select.Viewport className="p-2">
+          {options.map((opt: any) => (
+            <Select.Item
+              key={opt.value}
+              value={opt.value}
+              className="relative flex items-center px-8 py-2.5 text-sm text-muted-foreground rounded-lg cursor-pointer outline-none focus:bg-primary/20 focus:text-white transition-colors"
+            >
+              <Select.ItemText>{opt.label}</Select.ItemText>
+            </Select.Item>
+          ))}
+        </Select.Viewport>
+      </Select.Content>
+    </Select.Portal>
+  </Select.Root>
+);
 
 const ExploreView = () => {
   const searchParams = useSearchParams();
@@ -17,14 +51,16 @@ const ExploreView = () => {
   const [selectedGenre, setSelectedGenre] = useState<string>(searchParams.get('genre') || '');
   const [selectedType, setSelectedType] = useState<string>('');
   const [selectedStatus, setSelectedStatus] = useState<string>('');
+  const [selectedYear, setSelectedYear] = useState<string>('');
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
+
+  const years = Array.from({ length: 30 }, (_, i) => (new Date().getFullYear() - i).toString());
 
   useEffect(() => {
     const fetchGenres = async () => {
       try {
         const data = await getAnimeGenres();
-        // Sort genres: put Hentai (id 12) at the end if it exists
         const sortedGenres = data.data.sort((a: any, b: any) => {
           if (a.mal_id === 12) return 1;
           if (b.mal_id === 12) return -1;
@@ -40,7 +76,7 @@ const ExploreView = () => {
 
   useEffect(() => {
     handleSearch(true);
-  }, [selectedGenre, selectedType, selectedStatus]);
+  }, [selectedGenre, selectedType, selectedStatus, selectedYear]);
 
   const handleSearch = async (reset = false) => {
     setLoading(true);
@@ -50,6 +86,7 @@ const ExploreView = () => {
       if (selectedGenre) params += `&genres=${selectedGenre}`;
       if (selectedType) params += `&type=${selectedType}`;
       if (selectedStatus) params += `&status=${selectedStatus}`;
+      if (selectedYear) params += `&start_date=${selectedYear}-01-01`;
 
       const data = await searchAnime(query, currentPage, params);
       if (reset) {
@@ -113,53 +150,60 @@ const ExploreView = () => {
           </div>
 
           <div className="flex-1 flex flex-wrap gap-4">
-            {/* Genre Filter */}
-            <select 
+            <CustomSelect
               value={selectedGenre}
-              onChange={(e) => setSelectedGenre(e.target.value)}
-              className="bg-white/5 border border-white/10 rounded-xl px-4 py-2 text-sm text-white focus:outline-none focus:border-primary/50"
-            >
-              <option value="">All Genres</option>
-              {genres.map(g => (
-                <option key={g.mal_id} value={g.mal_id}>{g.name}</option>
-              ))}
-            </select>
+              onValueChange={setSelectedGenre}
+              placeholder="All Genres"
+              options={[{ value: "all", label: "All Genres" }, ...genres.map(g => ({ value: g.mal_id.toString(), label: g.name }))]}
+              icon={SlidersHorizontal}
+            />
 
-            {/* Type Filter */}
-            <select 
+            <CustomSelect
               value={selectedType}
-              onChange={(e) => setSelectedType(e.target.value)}
-              className="bg-white/5 border border-white/10 rounded-xl px-4 py-2 text-sm text-white focus:outline-none focus:border-primary/50"
-            >
-              <option value="">All Types</option>
-              <option value="tv">TV Series</option>
-              <option value="movie">Movies</option>
-              <option value="ova">OVA</option>
-              <option value="special">Special</option>
-            </select>
+              onValueChange={setSelectedType}
+              placeholder="All Types"
+              options={[
+                { value: "all", label: "All Types" },
+                { value: "tv", label: "TV Series" },
+                { value: "movie", label: "Movies" },
+                { value: "ova", label: "OVA" },
+                { value: "special", label: "Special" },
+              ]}
+              icon={Play}
+            />
 
-            {/* Status Filter */}
-            <select 
+            <CustomSelect
               value={selectedStatus}
-              onChange={(e) => setSelectedStatus(e.target.value)}
-              className="bg-white/5 border border-white/10 rounded-xl px-4 py-2 text-sm text-white focus:outline-none focus:border-primary/50"
-            >
-              <option value="">All Status</option>
-              <option value="airing">Currently Airing</option>
-              <option value="complete">Completed</option>
-              <option value="upcoming">Upcoming</option>
-            </select>
+              onValueChange={setSelectedStatus}
+              placeholder="All Status"
+              options={[
+                { value: "all", label: "All Status" },
+                { value: "airing", label: "Currently Airing" },
+                { value: "complete", label: "Completed" },
+                { value: "upcoming", label: "Upcoming" },
+              ]}
+              icon={Loader2}
+            />
 
-            {(selectedGenre || selectedType || selectedStatus || query) && (
+            <CustomSelect
+              value={selectedYear}
+              onValueChange={setSelectedYear}
+              placeholder="All Years"
+              options={[{ value: "all", label: "All Years" }, ...years.map(y => ({ value: y, label: y }))]}
+              icon={Calendar}
+            />
+
+            {(selectedGenre || selectedType || selectedStatus || selectedYear || query) && (
               <button 
                 onClick={() => {
                   setSelectedGenre('');
                   setSelectedType('');
                   setSelectedStatus('');
+                  setSelectedYear('');
                   setQuery('');
                   handleSearch(true);
                 }}
-                className="flex items-center gap-2 text-xs font-bold text-muted-foreground hover:text-white transition-colors uppercase tracking-widest"
+                className="flex items-center gap-2 text-xs font-bold text-muted-foreground hover:text-white transition-colors uppercase tracking-widest px-4"
               >
                 <X size={14} />
                 Clear All
