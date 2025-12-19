@@ -5,22 +5,22 @@ import { Info, ShieldCheck, Sparkles, Zap, Tv, Globe } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const InfoCards = () => {
-  const cards = [
-    {
-      title: "What is Anime?",
-      description: "Anime is a style of animation originating from Japan, known for vibrant art and complex storytelling. It encompasses many genres and has a massive global following.",
-      icon: Tv,
-      color: "text-primary",
-      bg: "bg-primary/5"
-    },
-    {
-      title: "About Animexus",
-      description: "Animexus is your premium gateway to the world of anime. We provide up-to-date information on trending titles, ratings, and detailed character insights.",
-      icon: Globe,
-      color: "text-secondary",
-      bg: "bg-secondary/5"
-    }
-  ];
+    const cards = [
+      {
+        title: "What is Anime?",
+        description: "Anime is a style of animation originating from Japan, known for vibrant art and complex storytelling. It encompasses many genres and has a massive global following.",
+        icon: Sparkles,
+        color: "text-primary",
+        bg: "bg-primary/5"
+      },
+      {
+        title: "About Animexus",
+        description: "Animexus is your premium gateway to the world of anime. We provide up-to-date information on trending titles, ratings, and detailed character insights.",
+        icon: Zap,
+        color: "text-secondary",
+        bg: "bg-secondary/5"
+      }
+    ];
 
   return (
     <section className="grid md:grid-cols-2 gap-8">
