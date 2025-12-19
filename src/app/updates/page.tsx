@@ -8,7 +8,7 @@ import { History, CheckCircle2, AlertCircle, Clock } from 'lucide-react';
 
 export default function UpdatesPage() {
     const versions = [
-      { version: 'V2.0.5', date: 'Dec 10, 2025', changes: ['Only show newest high-rated anime in slider', 'Added Year filter to Explore page', 'Custom dropdown filters for better UX', 'Replaced all alerts with smooth popups (sonner)', 'Fixed related media links in details', 'Removed all logo circle branding', 'Added "All Systems Operational" status to footer'], status: 'Current' },
+        { version: 'V2.0.5', date: 'Dec 10, 2025', changes: ['Only show newest high-rated anime in slider', 'Added Year filter to Explore page', 'Custom dropdown filters for better UX', 'Replaced all alerts with smooth popups (sonner)', 'Fixed related media links in details', 'Removed all logo circle branding', 'Added "Fully Operational" status to footer', 'Rounded buttons for a more modern look'], status: 'Current' },
       { version: 'V2.0.4', date: 'Dec 05, 2025', changes: ['Redesigned entire UI with Cyber-Noir aesthetic', 'Implemented character detail tooltips', 'Added Privacy Policy & Terms of Service'], status: 'Previous' },
       { version: 'V2.0.3', date: 'Nov 30, 2025', changes: ['Enhanced Hero Slider with Swiper modules', 'Improved Anime Detail View layout', 'Optimized mobile responsiveness'], status: 'Previous' },
       { version: 'V2.0.2', date: 'Nov 20, 2025', changes: ['Added instant character hover details', 'Fixed score glow effect', 'Updated social links to @PERFEE123'], status: 'Previous' },
