@@ -93,7 +93,15 @@ const ExploreView = () => {
         // Show most trending and new stuff by default
         data = await getNewestHighRatedAnime(currentPage);
       } else {
-        let params = "&order_by=score&sort=desc"; // Prioritize top rated
+        let params = "";
+        // Jikan v4: order_by works best when query is empty
+        if (!query) {
+          params += "&order_by=score&sort=desc";
+        } else {
+          // If there is a query, we still try to order by score to satisfy "top rated"
+          params += "&order_by=score&sort=desc";
+        }
+        
         if (selectedGenre && selectedGenre !== 'all') params += `&genres=${selectedGenre}`;
         if (selectedType && selectedType !== 'all') params += `&type=${selectedType}`;
         if (selectedStatus && selectedStatus !== 'all') params += `&status=${selectedStatus}`;
