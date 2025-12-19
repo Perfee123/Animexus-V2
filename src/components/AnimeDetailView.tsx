@@ -107,13 +107,13 @@ export default function AnimeDetailView({ anime, characters }: AnimeDetailViewPr
                 transition={{ delay: 0.2 }}
                 className="flex flex-wrap items-center gap-12"
               >
-                <div className="flex flex-col">
-                  <span className="text-[10px] font-black text-primary uppercase tracking-[0.3em] mb-2">Score</span>
-                  <div className="flex items-center gap-3">
-                    <Star className="h-6 w-6 text-primary fill-primary" />
-                    <span className="text-3xl font-black text-white leading-none">{anime.score || 'N/A'}</span>
+                  <div className="flex flex-col">
+                    <span className="text-[10px] font-black text-primary uppercase tracking-[0.3em] mb-2">Score</span>
+                    <div className="flex items-center gap-3">
+                      <Star className="h-6 w-6 text-primary" />
+                      <span className="text-3xl font-black text-white leading-none">{anime.score || 'N/A'}</span>
+                    </div>
                   </div>
-                </div>
                 <div className="w-px h-12 bg-white/10" />
                 <div className="flex flex-col">
                   <span className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.3em] mb-2">Popularity</span>
