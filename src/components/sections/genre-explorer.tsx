@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Loader2, Shapes } from "lucide-react";
+import { Loader2, Compass } from "lucide-react";
 import { getAnimeGenres } from "@/lib/jikan";
 import { motion } from "framer-motion";
 import Link from "next/link";
@@ -30,7 +30,7 @@ export default function GenreExplorer() {
     <section className="w-full">
       <div className="flex items-center gap-3 mb-8">
         <div className="p-3 rounded-2xl bg-primary/10 border border-primary/20 shadow-[0_0_20px_rgba(59,130,246,0.2)]">
-          <Shapes className="h-6 w-6 text-primary" />
+          <Compass className="h-6 w-6 text-primary" />
         </div>
         <h2 className="text-3xl font-black text-white tracking-tighter uppercase">
           Explore <span className="text-primary">Genres</span>
