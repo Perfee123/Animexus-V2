@@ -7,10 +7,10 @@ import { motion } from 'framer-motion';
 const MaintenanceBanner = () => {
   return (
     <div className="w-full py-2 px-4">
-      <motion.div 
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="mx-auto max-w-2xl flex items-center justify-center gap-3 rounded-full
+        <motion.div 
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mx-auto max-w-fit flex items-center justify-center gap-3 rounded-full
                   border border-primary/30
                   bg-primary/10
                   px-6 py-2
