@@ -22,13 +22,12 @@ export async function getTopAnime(page = 1) {
 }
 
 export async function getNewestHighRatedAnime(page = 1) {
-  // Fetching recently aired or airing anime with high scores from current year
-  const currentYear = new Date().getFullYear();
-  const data = await fetchWithRetry(`${JIKAN_BASE_URL}/anime?order_by=score&sort=desc&start_date=${currentYear}-01-01&page=${page}`);
+  // Fetching currently airing anime sorted by score (Top Rated + Newest)
+  const data = await fetchWithRetry(`${JIKAN_BASE_URL}/seasons/now?order_by=score&sort=desc&page=${page}`);
   
-  // Fallback to previous year if no results found for current year (useful at the start of the year)
+  // Fallback to top anime if seasons/now is empty or has issues
   if ((!data.data || data.data.length === 0) && page === 1) {
-    return fetchWithRetry(`${JIKAN_BASE_URL}/anime?order_by=score&sort=desc&start_date=${currentYear - 1}-01-01&page=${page}`);
+    return fetchWithRetry(`${JIKAN_BASE_URL}/top/anime?filter=airing&page=${page}`);
   }
   
   return data;
