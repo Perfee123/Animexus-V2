@@ -45,7 +45,7 @@ const Footer = () => {
                 <div className="flex flex-col gap-3">
                   <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-500/10 border border-green-500/20 text-[10px] font-bold text-green-500 uppercase tracking-widest w-fit">
                     <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-                    All Systems Operational
+                    Fully Operational
                   </div>
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-[10px] font-bold text-primary uppercase tracking-widest w-fit">
                     Live & Regular Updates
