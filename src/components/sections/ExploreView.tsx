@@ -93,7 +93,7 @@ const ExploreView = () => {
         // Show most trending and new stuff by default
         data = await getNewestHighRatedAnime(currentPage);
       } else {
-        let params = "";
+        let params = "&order_by=score&sort=desc"; // Prioritize top rated
         if (selectedGenre && selectedGenre !== 'all') params += `&genres=${selectedGenre}`;
         if (selectedType && selectedType !== 'all') params += `&type=${selectedType}`;
         if (selectedStatus && selectedStatus !== 'all') params += `&status=${selectedStatus}`;
