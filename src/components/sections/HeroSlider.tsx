@@ -32,59 +32,78 @@ const HeroSlider = ({ trending }: HeroSliderProps) => {
         loop={true}
         className="w-full h-full"
       >
-        {trending.slice(0, 5).map((anime, index) => (
+        {trending.slice(0, 10).map((anime, index) => (
           <SwiperSlide key={anime.mal_id}>
             <div className="relative w-full h-full">
-              {/* Background Image */}
+              {/* Cinematic Background */}
               <div 
-                className="absolute inset-0 bg-cover bg-center transition-transform duration-700 hover:scale-105"
+                className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-110"
                 style={{ backgroundImage: `url(${anime.images.jpg.large_image_url})` }}
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-background via-background/60 to-transparent" />
+                <div className="absolute inset-0 bg-background/80 backdrop-blur-3xl" />
+                <div className="absolute inset-0 bg-gradient-to-r from-background via-background/40 to-transparent" />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
               </div>
 
-              {/* Content */}
-              <div className="relative h-full container mx-auto flex flex-col justify-center px-6 md:px-12">
+              {/* Content Grid */}
+              <div className="relative h-full container mx-auto grid grid-cols-1 md:grid-cols-2 items-center gap-12 px-6 md:px-12">
+                {/* Left Side: Info */}
                 <motion.div
                   initial={{ opacity: 0, x: -50 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.8, delay: 0.2 }}
-                  className="max-w-2xl"
+                  className="z-10"
                 >
-                  <div className="flex items-center gap-2 mb-4">
-                    <div className="px-3 py-1 rounded-full bg-primary text-white text-xs font-bold flex items-center gap-1">
-                      <Star size={12} fill="currentColor" />
-                      {anime.score}
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="px-4 py-1.5 rounded-full bg-primary/20 text-primary text-sm font-bold border border-primary/30 flex items-center gap-2">
+                      <Star size={14} fill="currentColor" />
+                      {anime.score} Rating
                     </div>
-                    <span className="text-muted-foreground text-sm font-medium">
-                      {anime.type} • {anime.episodes || '?'} eps
-                    </span>
+                    <div className="px-4 py-1.5 rounded-full bg-white/10 text-white text-sm font-bold backdrop-blur-md">
+                      #{index + 1} Trending
+                    </div>
                   </div>
                   
-                  <h2 className="text-4xl md:text-6xl font-extrabold text-white mb-6 line-clamp-2 leading-tight">
+                  <h2 className="text-4xl md:text-7xl font-black text-white mb-6 line-clamp-2 leading-tight tracking-tighter">
                     {anime.title}
                   </h2>
                   
-                  <p className="text-muted-foreground text-lg mb-8 line-clamp-3 md:line-clamp-4 max-w-xl">
+                  <p className="text-muted-foreground text-lg mb-8 line-clamp-3 md:line-clamp-4 max-w-xl leading-relaxed">
                     {anime.synopsis}
                   </p>
 
                   <div className="flex flex-wrap items-center gap-4">
                     <Link
                       href={`/anime/${anime.mal_id}`}
-                      className="px-8 py-4 rounded-2xl bg-primary text-white font-bold flex items-center gap-2 transition-all hover:scale-105 active:scale-95 neon-glow"
+                      className="px-10 py-5 rounded-2xl bg-primary text-white font-black flex items-center gap-3 transition-all hover:scale-105 hover:shadow-[0_0_30px_rgba(59,130,246,0.5)] active:scale-95"
                     >
-                      <Play size={20} fill="currentColor" />
-                      Watch Now
+                      <Play size={24} fill="currentColor" />
+                      EXPLORE NOW
                     </Link>
                     <Link
                       href={`/anime/${anime.mal_id}`}
-                      className="px-8 py-4 rounded-2xl bg-white/5 border border-white/10 text-white font-bold flex items-center gap-2 transition-all hover:bg-white/10 active:scale-95"
+                      className="px-10 py-5 rounded-2xl bg-white/5 border border-white/10 text-white font-bold flex items-center gap-2 transition-all hover:bg-white/10 active:scale-95 backdrop-blur-sm"
                     >
-                      <Info size={20} />
-                      More Info
+                      DETAILS
                     </Link>
+                  </div>
+                </motion.div>
+
+                {/* Right Side: High-res Poster */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8, rotate: 5 }}
+                  whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+                  transition={{ duration: 1, type: "spring" }}
+                  className="hidden md:flex justify-end"
+                >
+                  <div className="relative group/poster">
+                    <div className="absolute -inset-4 bg-primary/20 blur-3xl opacity-0 group-hover/poster:opacity-100 transition-opacity duration-700" />
+                    <img 
+                      src={anime.images.jpg.large_image_url} 
+                      alt={anime.title}
+                      className="w-[350px] aspect-[2/3] object-cover rounded-[2rem] shadow-2xl border-4 border-white/10 relative z-10 transition-transform duration-500 group-hover/poster:-translate-y-4"
+                    />
+                    <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-primary/20 rounded-full blur-2xl -z-10" />
                   </div>
                 </motion.div>
               </div>
