@@ -112,7 +112,9 @@ export default function MyListPage() {
             className="flex flex-col items-center justify-center py-32 text-center space-y-6 bg-card/50 border border-border border-dashed rounded-[3rem]"
           >
             <div className="w-20 h-20 rounded-full bg-muted flex items-center justify-center">
-              <LayoutGrid size={40} className="text-muted-foreground" />
+              <div className="flex items-center justify-center">
+                 <LayoutGrid size={40} className="text-muted-foreground" />
+              </div>
             </div>
             <div className="space-y-2">
               <h3 className="text-2xl font-bold text-white">No titles found</h3>
@@ -130,12 +132,6 @@ export default function MyListPage() {
             </Link>
           </motion.div>
         )}
-      </main>
-
-      <Footer />
-    </div>
-  );
-}
       </main>
 
       <Footer />
