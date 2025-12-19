@@ -9,11 +9,18 @@ import InfoCards from "@/components/sections/info-cards";
 import Footer from "@/components/sections/footer";
 
 export default async function Home() {
-  const trendingData = await getNewestHighRatedAnime(1);
-  const trending = trendingData.data?.slice(0, 10) || [];
-  
-  const topRatedData = await getTopAnime(1);
-  const topRated = topRatedData.data?.slice(0, 12) || [];
+  let trending = [];
+  let topRated = [];
+
+  try {
+    const trendingData = await getNewestHighRatedAnime(1);
+    trending = trendingData?.data?.slice(0, 10) || [];
+    
+    const topRatedData = await getTopAnime(1);
+    topRated = topRatedData?.data?.slice(0, 12) || [];
+  } catch (error) {
+    console.error("Error fetching home page data:", error);
+  }
 
   return (
     <div className="min-h-screen flex flex-col">
