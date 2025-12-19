@@ -34,7 +34,7 @@ export default function HeroSearch() {
   return (
     <section className="relative z-30">
       <div className="flex flex-col gap-8">
-        <div className="relative max-w-3xl mx-auto w-full group">
+        <div className="relative max-w-xl mx-auto w-full group">
           <div className="absolute inset-y-0 left-5 flex items-center pointer-events-none">
             <Search className="h-5 w-5 text-muted-foreground group-focus-within:text-primary transition-colors" />
           </div>
@@ -43,7 +43,7 @@ export default function HeroSearch() {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search anime, movies, or series..."
-            className="w-full rounded-2xl bg-card border border-border pl-14 pr-12 py-5 text-lg outline-none focus:border-primary/50 focus:ring-4 focus:ring-primary/10 text-white transition-all duration-300 shadow-2xl"
+            className="w-full rounded-full bg-card border border-border pl-14 pr-12 py-5 text-lg outline-none focus:border-primary/50 focus:ring-4 focus:ring-primary/10 text-white transition-all duration-300 shadow-2xl"
           />
           <div className="absolute right-5 inset-y-0 flex items-center gap-2">
             {isSearching ? (
