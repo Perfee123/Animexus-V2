@@ -25,28 +25,24 @@ const InfoCards = () => {
   return (
     <section className="grid md:grid-cols-2 gap-8">
       {cards.map((card, idx) => (
-        <motion.div
-          key={idx}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: idx * 0.1 }}
-          viewport={{ once: true }}
-          className="relative group p-8 rounded-3xl bg-card border border-border overflow-hidden"
-        >
-          <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:scale-110 transition-transform">
-            <card.icon size={120} className={card.color} />
-          </div>
-          
-          <div className="relative space-y-4">
-            <div className={`w-12 h-12 rounded-2xl ${card.bg} flex items-center justify-center`}>
-              <card.icon size={24} className={card.color} />
+          <motion.div
+            key={idx}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: idx * 0.1 }}
+            viewport={{ once: true }}
+            className="relative group p-10 rounded-[3rem] bg-card border border-border overflow-hidden"
+          >
+            <div className="relative space-y-6">
+              <div className={`w-14 h-14 rounded-2xl ${card.bg} flex items-center justify-center border border-white/5 shadow-inner`}>
+                <card.icon size={28} className={card.color} />
+              </div>
+              <h3 className="text-3xl font-black text-white tracking-tight">{card.title}</h3>
+              <p className="text-muted-foreground text-lg leading-relaxed max-w-lg">
+                {card.description}
+              </p>
             </div>
-            <h3 className="text-2xl font-bold text-white">{card.title}</h3>
-            <p className="text-muted-foreground leading-relaxed">
-              {card.description}
-            </p>
-          </div>
-        </motion.div>
+          </motion.div>
       ))}
     </section>
   );
