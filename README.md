@@ -1,4 +1,4 @@
-# Animexus-V2
+# animexus-V2
 
 Animexus-V2 is a high-performance, premium anime discovery platform built with Next.js 15 and the Jikan API. It features a sleek Cyber-Noir aesthetic, real-time search, and a personalized tracking system.
 
