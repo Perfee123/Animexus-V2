@@ -37,23 +37,23 @@ export default function TopRatedGrid() {
 
   return (
     <section className="space-y-8">
-      <div className="flex items-center justify-between">
-        <div className="space-y-1">
-          <h2 className="text-3xl font-extrabold text-white flex items-center gap-3">
-            <TrendingUp className="text-primary" size={32} />
-            Trending Now
-          </h2>
-          <p className="text-muted-foreground font-medium">The most popular titles this week</p>
+        <div className="flex items-center justify-between">
+          <div className="space-y-1">
+            <h2 className="text-3xl font-extrabold text-white flex items-center gap-3">
+              <Star className="text-primary" size={32} />
+              Top Rated
+            </h2>
+            <p className="text-muted-foreground font-medium">All-time masterpieces you must watch</p>
+          </div>
+          
+          <Link 
+            href="/explore" 
+            className="group flex items-center gap-2 text-sm font-bold text-primary hover:text-primary/80 transition-colors"
+          >
+            Explore More
+            <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+          </Link>
         </div>
-        
-        <Link 
-          href="/trending" 
-          className="group flex items-center gap-2 text-sm font-bold text-primary hover:text-primary/80 transition-colors"
-        >
-          View All
-          <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
-        </Link>
-      </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 md:gap-8">
         {animeList.map((anime, index) => (
