@@ -1,34 +1,28 @@
 import React from 'react';
-import { AlertTriangle } from 'lucide-react';
+import { AlertCircle } from 'lucide-react';
+import { motion } from 'framer-motion';
 
-/**
- * MaintenanceBanner component
- * Displays a yellow warning banner at the top of the content area
- * indicating that the site is currently under maintenance.
- */
 const MaintenanceBanner = () => {
   return (
-    <div className="w-full py-4 px-4 sm:px-6 md:px-8">
-      <div 
-        className="mx-auto max-w-lg flex items-center gap-3 rounded-xl
-                  border border-yellow-500/50
-                  bg-gradient-to-r from-yellow-400/20 to-amber-400/20
-                  px-6 py-3
-                  text-yellow-200
-                  shadow-lg shadow-yellow-500/20
-                  backdrop-blur-sm"
-        style={{
-          boxShadow: '0 10px 15px -3px rgba(234, 179, 8, 0.2), 0 4px 6px -4px rgba(234, 179, 8, 0.2)'
-        }}
+    <div className="w-full py-2 px-4">
+      <motion.div 
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="mx-auto max-w-2xl flex items-center justify-center gap-3 rounded-full
+                  border border-primary/30
+                  bg-primary/10
+                  px-6 py-2
+                  text-primary
+                  neon-glow"
       >
-        <AlertTriangle 
-          className="h-5 w-5 flex-shrink-0 text-yellow-300" 
+        <AlertCircle 
+          className="h-4 w-4 flex-shrink-0" 
           aria-hidden="true"
         />
-        <p className="text-sm font-semibold leading-tight">
-          This site is currently under maintenance and may have bugs
+        <p className="text-xs font-bold uppercase tracking-widest leading-tight">
+          Status: Might be discontinued
         </p>
-      </div>
+      </motion.div>
     </div>
   );
 };
