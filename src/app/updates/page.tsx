@@ -8,11 +8,16 @@ import { History, CheckCircle2, AlertCircle, Clock } from 'lucide-react';
 
 export default function UpdatesPage() {
     const versions = [
-      { version: 'V2.0.5', date: 'Dec 10, 2025', changes: ['Redesigned entire UI with Cyber-Noir aesthetic', 'Converted My List to a full Explore page', 'Added high-quality Hero Slider', 'Implemented character detail tooltips', 'Added Privacy Policy & Terms of Service'], status: 'Current' },
-      { version: 'V1.0.10', date: 'Nov 25, 2025', changes: ['Enhanced Hero Slider with Swiper', 'Improved Anime Detail View', 'Added character tooltips'], status: 'Previous' },
-      { version: 'V1.0.9', date: 'Nov 10, 2025', changes: ['Optimized Jikan API calls', 'Fixed search grid spacing'], status: 'Previous' },
-      { version: 'V1.0.8', date: 'Oct 15, 2025', changes: ['Redesigned navigation bar', 'Added My List functionality'], status: 'Previous' },
-      { version: 'V1.0.0', date: 'Aug 01, 2025', changes: ['Initial release of Animexus'], status: 'Birth' },
+      { version: 'V2.0.5', date: 'Dec 10, 2025', changes: ['Complete Cyber-Noir UI overhaul', 'Added Year filter and custom dropdowns', 'Removed all brand logos', 'Implemented success popups for actions', 'Optimized Hero Slider visuals', 'System status indicator added', 'Privacy & Terms pages integrated', 'Refined character detail hover effects'], status: 'Current' },
+      { version: 'V2.0.4', date: 'Dec 05, 2025', changes: ['Enhanced search algorithm', 'Seasonal data synchronization'], status: 'Previous' },
+      { version: 'V2.0.3', date: 'Nov 30, 2025', changes: ['Mobile layout optimizations', 'Image lazy loading improved'], status: 'Previous' },
+      { version: 'V2.0.2', date: 'Nov 20, 2025', changes: ['Metadata expansion for details', 'Genre explorer redesign'], status: 'Previous' },
+      { version: 'V2.0.1', date: 'Nov 10, 2025', changes: ['Social media link sync', 'Rating score precision fix'], status: 'Previous' },
+      { version: 'V2.0.0', date: 'Nov 01, 2025', changes: ['Next.js 15 Migration', 'Framer Motion implementation'], status: 'Previous' },
+      { version: 'V1.5.0', date: 'Oct 15, 2025', changes: ['My List functionality', 'Quick view modals'], status: 'Previous' },
+      { version: 'V1.2.0', date: 'Oct 01, 2025', changes: ['Global search bar v1', 'History tracking'], status: 'Previous' },
+      { version: 'V1.1.0', date: 'Sep 15, 2025', changes: ['Stability patches', 'API rate limit handling'], status: 'Previous' },
+      { version: 'V1.0.0', date: 'Sep 01, 2025', changes: ['Initial Animexus Launch'], status: 'Birth' },
     ];
 
   return (
