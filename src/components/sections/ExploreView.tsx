@@ -86,8 +86,8 @@ const ExploreView = () => {
       const hasFilters = query || selectedGenre || selectedType || selectedStatus || selectedYear;
 
       if (!hasFilters) {
-        // Show ongoing/trending if no filters
-        data = await getOngoingAnime(currentPage);
+        // Show most trending and new stuff by default
+        data = await getNewestHighRatedAnime(currentPage);
       } else {
         let params = "";
         if (selectedGenre) params += `&genres=${selectedGenre}`;
