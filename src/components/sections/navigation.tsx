@@ -11,31 +11,31 @@ const Navigation = () => {
   const [isOpen, setIsOpen] = React.useState(false);
   const pathname = usePathname();
 
-  const navLinks = [
-    { name: 'Home', href: '/', icon: Home },
-    { name: 'My List', href: '/my-list', icon: Heart },
-    { name: 'Contact', href: '/contact', icon: MessageCircle },
-    { name: 'Updates', href: '/updates', icon: RefreshCw },
-  ];
+    const navLinks = [
+      { name: 'Home', href: '/', icon: Home },
+      { name: 'Explore', href: '/explore', icon: Heart },
+      { name: 'Contact', href: '/contact', icon: MessageCircle },
+      { name: 'Updates', href: '/updates', icon: RefreshCw },
+    ];
 
-  return (
-    <header className="sticky top-0 z-50 w-full solid-header h-16">
-      <div className="container mx-auto flex h-full items-center justify-between gap-4 px-4 md:px-8">
-        {/* Logo */}
-        <Link 
-          href="/" 
-          className="flex items-center gap-2 group transition-all"
-        >
-          <motion.div
-            whileHover={{ rotate: 180 }}
-            className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center neon-glow"
+    return (
+      <header className="sticky top-0 z-50 w-full solid-header h-16">
+        <div className="container mx-auto flex h-full items-center justify-between gap-4 px-4 md:px-8">
+          {/* Logo */}
+          <Link 
+            href="/" 
+            className="flex items-center gap-2 group transition-all"
           >
-            <span className="text-white font-bold text-xs">AX</span>
-          </motion.div>
-          <span className="font-bold tracking-tighter text-white text-xl">
-            Anime<span className="text-primary">xus</span>
-          </span>
-        </Link>
+            <motion.div
+              whileHover={{ scale: 1.1, rotate: 5 }}
+              className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center neon-glow"
+            >
+              <div className="w-6 h-6 border-2 border-white rounded-md" />
+            </motion.div>
+            <span className="font-bold tracking-tighter text-white text-2xl">
+              Anime<span className="text-primary">xus</span>
+            </span>
+          </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-1">
