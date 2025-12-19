@@ -18,11 +18,14 @@ interface AnimeCardProps {
     score: number;
     type: string;
     episodes: number;
+    rating?: string;
     genres: { name: string }[];
   };
 }
 
 export function AnimeCard({ anime }: AnimeCardProps) {
+  const isNSFW = anime.genres?.some(g => ['Hentai', 'Erotica'].includes(g.name)) || anime.rating?.includes('R+');
+
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.95 }}
@@ -51,13 +54,20 @@ export function AnimeCard({ anime }: AnimeCardProps) {
           </motion.div>
         </div>
         
-        {/* Score Badge */}
-        {anime.score && (
-          <div className="absolute top-3 right-3 flex items-center gap-1 rounded-full bg-black/60 backdrop-blur-md px-2 py-1 border border-white/20 z-10">
-            <Star className="h-3 w-3 fill-primary text-primary" />
-            <span className="text-xs font-bold text-white">{anime.score}</span>
-          </div>
-        )}
+        {/* Badges */}
+        <div className="absolute top-3 right-3 flex flex-col gap-2 items-end z-10">
+          {anime.score && (
+            <div className="flex items-center gap-1 rounded-full bg-black/60 backdrop-blur-md px-2 py-1 border border-white/20">
+              <Star className="h-3 w-3 fill-primary text-primary" />
+              <span className="text-xs font-bold text-white">{anime.score}</span>
+            </div>
+          )}
+          {isNSFW && (
+            <div className="rounded-full bg-red-600 px-2 py-0.5 border border-red-500/50 shadow-lg shadow-red-600/20">
+              <span className="text-[10px] font-black text-white uppercase tracking-tighter">NSFW</span>
+            </div>
+          )}
+        </div>
 
         {/* Info on hover (Mobile/Desktop) */}
         <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 z-10">
