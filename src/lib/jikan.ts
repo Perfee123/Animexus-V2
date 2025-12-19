@@ -22,8 +22,9 @@ export async function getTopAnime(page = 1) {
 }
 
 export async function getNewestHighRatedAnime(page = 1) {
-  // Fetching recently aired or airing anime with high scores
-  return fetchWithRetry(`${JIKAN_BASE_URL}/anime?order_by=score&sort=desc&status=airing&page=${page}`);
+  // Fetching recently aired or airing anime with high scores from current year
+  const currentYear = new Date().getFullYear();
+  return fetchWithRetry(`${JIKAN_BASE_URL}/anime?order_by=score&sort=desc&start_date=${currentYear}-01-01&page=${page}`);
 }
 
 export async function getOngoingAnime(page = 1) {
