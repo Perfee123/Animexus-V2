@@ -72,21 +72,21 @@ const HeroSlider = ({ trending }: HeroSliderProps) => {
                     {anime.synopsis}
                   </p>
 
-                  <div className="flex flex-wrap items-center gap-4">
-                    <Link
-                      href={`/anime/${anime.mal_id}`}
-                      className="px-10 py-5 rounded-full bg-primary text-white font-black flex items-center gap-3 transition-all hover:scale-105 hover:shadow-[0_0_30px_rgba(59,130,246,0.5)] active:scale-95"
-                    >
-                      <Play size={24} fill="currentColor" />
-                      EXPLORE NOW
-                    </Link>
-                    <Link
-                      href={`/anime/${anime.mal_id}`}
-                      className="px-10 py-5 rounded-full bg-white/5 border border-white/10 text-white font-bold flex items-center gap-2 transition-all hover:bg-white/10 active:scale-95 backdrop-blur-sm"
-                    >
-                      DETAILS
-                    </Link>
-                  </div>
+                    <div className="flex flex-wrap items-center gap-4">
+                      <Link
+                        href={`/anime/${anime.mal_id}`}
+                        className="px-10 py-5 rounded-2xl bg-primary text-white font-black flex items-center gap-3 transition-all hover:scale-105 hover:shadow-[0_0_30px_rgba(59,130,246,0.5)] active:scale-95"
+                      >
+                        <Play size={24} fill="currentColor" />
+                        EXPLORE NOW
+                      </Link>
+                      <Link
+                        href={`/anime/${anime.mal_id}`}
+                        className="px-10 py-5 rounded-2xl bg-white/5 border border-white/10 text-white font-bold flex items-center gap-2 transition-all hover:bg-white/10 active:scale-95 backdrop-blur-sm"
+                      >
+                        DETAILS
+                      </Link>
+                    </div>
                 </motion.div>
 
                 {/* Right Side: High-res Poster */}
