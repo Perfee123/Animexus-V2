@@ -11,7 +11,7 @@ import * as Select from '@radix-ui/react-select';
 
 const CustomSelect = ({ value, onValueChange, placeholder, options, icon: Icon }: any) => (
   <Select.Root value={value} onValueChange={onValueChange}>
-    <Select.Trigger className="flex items-center justify-between gap-3 bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-primary/50 transition-all hover:bg-white/10 min-w-[140px]">
+    <Select.Trigger className="flex items-center justify-between gap-3 bg-white/5 border border-white/10 rounded-full px-6 py-2.5 text-sm text-white focus:outline-none focus:border-primary/50 transition-all hover:bg-white/10 min-w-[140px]">
       <div className="flex items-center gap-2">
         {Icon && <Icon size={14} className="text-primary" />}
         <Select.Value placeholder={placeholder} />
@@ -22,7 +22,7 @@ const CustomSelect = ({ value, onValueChange, placeholder, options, icon: Icon }
     </Select.Trigger>
 
     <Select.Portal>
-      <Select.Content className="z-50 overflow-hidden bg-[#0a0a0c] border border-white/10 rounded-xl shadow-2xl backdrop-blur-xl animate-in fade-in zoom-in-95 duration-200">
+      <Select.Content className="z-50 overflow-hidden bg-[#0a0a0c] border border-white/10 rounded-2xl shadow-2xl backdrop-blur-xl animate-in fade-in zoom-in-95 duration-200">
         <Select.ScrollUpButton className="flex items-center justify-center h-6 bg-white/5 text-white cursor-default">
           <ChevronDown className="rotate-180" size={14} />
         </Select.ScrollUpButton>
@@ -31,7 +31,7 @@ const CustomSelect = ({ value, onValueChange, placeholder, options, icon: Icon }
             <Select.Item
               key={opt.value}
               value={opt.value}
-              className="relative flex items-center px-8 py-2.5 text-sm text-muted-foreground rounded-lg cursor-pointer outline-none focus:bg-primary/20 focus:text-white transition-colors"
+              className="relative flex items-center px-8 py-2.5 text-sm text-muted-foreground rounded-full cursor-pointer outline-none focus:bg-primary/20 focus:text-white transition-colors"
             >
               <Select.ItemText>{opt.label}</Select.ItemText>
             </Select.Item>
