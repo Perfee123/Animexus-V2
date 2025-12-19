@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import { Info, ShieldCheck, Sparkles, Zap } from 'lucide-react';
+import { Info, ShieldCheck, Sparkles, Zap, Tv, Globe } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const InfoCards = () => {
@@ -9,14 +9,14 @@ const InfoCards = () => {
     {
       title: "What is Anime?",
       description: "Anime is a style of animation originating from Japan, known for vibrant art and complex storytelling. It encompasses many genres and has a massive global following.",
-      icon: Sparkles,
+      icon: Tv,
       color: "text-primary",
       bg: "bg-primary/5"
     },
     {
       title: "About Animexus",
       description: "Animexus is your premium gateway to the world of anime. We provide up-to-date information on trending titles, ratings, and detailed character insights.",
-      icon: Zap,
+      icon: Globe,
       color: "text-secondary",
       bg: "bg-secondary/5"
     }
