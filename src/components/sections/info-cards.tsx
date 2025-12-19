@@ -34,7 +34,7 @@ const InfoCards = () => {
             className="relative group p-10 rounded-[3rem] bg-card border border-border overflow-hidden"
           >
             <div className="relative space-y-6">
-              <div className={`w-14 h-14 rounded-2xl ${card.bg} flex items-center justify-center border border-white/5 shadow-inner`}>
+              <div className={`w-14 h-14 rounded-full ${card.bg} flex items-center justify-center border border-white/5 shadow-inner`}>
                 <card.icon size={28} className={card.color} />
               </div>
               <h3 className="text-3xl font-black text-white tracking-tight">{card.title}</h3>
