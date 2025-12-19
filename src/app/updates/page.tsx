@@ -55,10 +55,10 @@ export default function UpdatesPage() {
                 viewport={{ once: true }}
                 className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group"
               >
-                {/* Icon */}
-                <div className="flex items-center justify-center w-10 h-10 rounded-full border border-border bg-card text-primary shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
-                  <Clock size={18} />
-                </div>
+                  {/* Icon */}
+                  <div className="flex items-center justify-center w-10 h-10 rounded-full border border-border bg-card text-primary shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
+                    <CheckCircle2 size={18} />
+                  </div>
 
                 {/* Content Card */}
                 <div className="w-[calc(100%-4rem)] md:w-[45%] p-6 rounded-3xl bg-card border border-border group-hover:border-primary/30 transition-all duration-300">
