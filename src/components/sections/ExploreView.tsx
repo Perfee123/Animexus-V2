@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, Filter, SlidersHorizontal, ChevronRight, X, Loader2, ChevronDown, Calendar } from 'lucide-react';
+import { Search, Filter, SlidersHorizontal, ChevronRight, X, Loader2, ChevronDown, Calendar, Play } from 'lucide-react';
 import { searchAnime, getAnimeGenres } from '@/lib/jikan';
 import { AnimeCard } from '@/components/AnimeCard';
 import { cn } from '@/lib/utils';
