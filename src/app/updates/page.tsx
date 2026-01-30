@@ -8,7 +8,8 @@ import { History, CheckCircle2, AlertCircle, Clock } from 'lucide-react';
 
 export default function UpdatesPage() {
     const versions = [
-                { version: 'V2.1.1', date: 'Jan 19, 2026', changes: ['Reduced page load times by 30%', 'Fixed critical bugs in anime detail view', 'Improved error handling for API failures', 'Optimized image loading for better performance', 'Added keyboard shortcuts for navigation'], status: 'Current' },
+                { version: 'V2.2.0', date: 'Jan 30, 2026', changes: ['Implemented secure login authentication', 'Integrated backend services for data management', 'Added user session handling', 'Optimized backend performance'], status: 'Current' },
+                { version: 'V2.1.1', date: 'Jan 19, 2026', changes: ['Reduced page load times by 30%', 'Fixed critical bugs in anime detail view', 'Improved error handling for API failures', 'Optimized image loading for better performance', 'Added keyboard shortcuts for navigation'], status: 'Previous' },
                 { version: 'V2.1.0', date: 'Dec 11, 2025', changes: ['Improved search bar responsiveness and width', 'Rounded search bars and buttons site-wide', 'New icons for informational sections', 'Added NSFW tags for adult content', 'Redesigned My List delete feedback with custom popups', 'Enhanced Explore page with trending content', 'Resolved deployment lockfile conflicts'], status: 'Previous' },
                 { version: 'V2.0.5', date: 'Dec 10, 2025', changes: ['Only show newest high-rated anime in slider', 'Added Year filter to Explore page', 'Custom dropdown filters for better UX', 'Replaced all alerts with smooth popups (sonner)', 'Fixed related media links in details', 'Removed all logo circle branding', 'Added "Fully Operational" status to footer', 'Rounded buttons for a more modern look'], status: 'Previous' },
                 { version: 'V2.0.4', date: 'Dec 05, 2025', changes: ['Redesigned entire UI with Cyber-Noir aesthetic', 'Implemented character detail tooltips', 'Added Privacy Policy & Terms of Service'], status: 'Previous' },
@@ -19,7 +20,7 @@ export default function UpdatesPage() {
                 { version: 'V1.0.5', date: 'Oct 05, 2025', changes: ['Added Genre Explorer section', 'Improved navigation bar stability', 'Fixed trailer embed sizing'], status: 'Previous' },
                 { version: 'V1.0.2', date: 'Sep 15, 2025', changes: ['Added Info Cards for newcomers', 'Implemented basic search functionality', 'Refined typography'], status: 'Previous' },
                 { version: 'V1.0.1', date: 'Aug 20, 2025', changes: ['Fixed major bugs in API integration', 'Added footer with social links', 'Improved loading states'], status: 'Previous' },
-                { version: 'V1.0.0', date: 'Aug 01, 2025', changes: ['Initial release of Animexus'], status: 'Birth' },
+                { version: 'V1.0.0', date: 'Aug 01, 2025', changes: ['Initial release of Toonashi'], status: 'Birth' },
               ];
 
   return (
@@ -34,7 +35,7 @@ export default function UpdatesPage() {
                 <History className="text-primary" size={48} />
                 Release Notes
               </h1>
-              <p className="text-muted-foreground text-lg">Tracking the evolution of Animexus from birth to now.</p>
+              <p className="text-muted-foreground text-lg">Tracking the evolution of Toonashi from birth to now.</p>
             </div>
 
             <div className="px-6 py-3 rounded-2xl bg-primary/10 border border-primary/20 flex items-center gap-3">

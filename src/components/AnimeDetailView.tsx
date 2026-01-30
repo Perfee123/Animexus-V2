@@ -10,7 +10,9 @@ import { toast } from 'sonner';
 import { useSettings } from '@/hooks/useSettings';
 import { getAnimeRecommendations } from '@/lib/jikan';
 import { AnimeCard } from '@/components/AnimeCard';
+import Player from '@/components/Player';
 import { cn } from '@/lib/utils';
+import axios from 'axios';
 
 interface AnimeDetailViewProps {
   anime: any;
@@ -18,19 +20,26 @@ interface AnimeDetailViewProps {
 }
 
 export default function AnimeDetailView({ anime, characters }: AnimeDetailViewProps) {
-  const [activeTab, setActiveTab] = useState<'overview' | 'characters' | 'media'>('overview');
+  const [activeTab, setActiveTab] = useState<'overview' | 'episodes' | 'characters' | 'media'>('overview');
   const [recommendations, setRecommendations] = useState<any[]>([]);
+  const [episodes, setEpisodes] = useState<any[]>([]);
+  const [currentEpisode, setCurrentEpisode] = useState<any>(null);
   const { nsfwFilter } = useSettings();
   const [showNsfwAnyway, setShowNsfwAnyway] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
   
   const isNSFW = anime.genres?.some((g: any) => ['Hentai', 'Erotica'].includes(g.name)) || 
                  anime.rating?.includes('R+') || 
                  anime.rating?.includes('Rx');
 
-  const shouldBlur = isNSFW && nsfwFilter && !showNsfwAnyway;
+  const shouldBlur = isMounted && isNSFW && nsfwFilter && !showNsfwAnyway;
 
   const { addItem, getStatus, removeItem } = useMyList();
-  const currentStatus = getStatus(anime.mal_id);
+  const currentStatus = isMounted ? getStatus(anime.mal_id) : null;
 
   useEffect(() => {
     const fetchRecs = async () => {
@@ -43,6 +52,27 @@ export default function AnimeDetailView({ anime, characters }: AnimeDetailViewPr
     };
     fetchRecs();
   }, [anime.mal_id]);
+
+  useEffect(() => {
+    if (activeTab === 'episodes' && episodes.length === 0) {
+      axios.get(`https://api.jikan.moe/v4/anime/${anime.mal_id}/episodes`)
+        .then(response => setEpisodes(response.data.data || []))
+        .catch(err => console.error("Failed to fetch episodes", err));
+    }
+  }, [activeTab, anime.mal_id, episodes.length]);
+
+  const handleChangeEpisode = (direction: "prev" | "next") => {
+    if (!currentEpisode || episodes.length === 0) return;
+    
+    // Assuming episodes are sorted by mal_id (episode number)
+    const currentIndex = episodes.findIndex(ep => ep.mal_id === currentEpisode.mal_id);
+    if (currentIndex === -1) return;
+    
+    const newIndex = direction === "next" ? currentIndex + 1 : currentIndex - 1;
+    if (newIndex >= 0 && newIndex < episodes.length) {
+      setCurrentEpisode(episodes[newIndex]);
+    }
+  };
 
   const handleAddToList = (status: ListStatus) => {
     addItem({
@@ -238,7 +268,7 @@ export default function AnimeDetailView({ anime, characters }: AnimeDetailViewPr
           <div className="lg:col-span-8 space-y-12 md:space-y-20">
             {}
             <div className="flex gap-2 md:gap-4 border-b border-white/5 pb-2 md:pb-4 overflow-x-auto no-scrollbar">
-              {['overview', 'characters', 'media'].map((tab) => (
+              {['overview', 'episodes', 'characters', 'media'].map((tab) => (
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab as any)}
@@ -317,6 +347,64 @@ export default function AnimeDetailView({ anime, characters }: AnimeDetailViewPr
                       </div>
                     </div>
                   )}
+                </motion.div>
+              )}
+
+              {activeTab === 'episodes' && (
+                <motion.div
+                  key="episodes"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  className="space-y-8"
+                >
+                  {currentEpisode ? (
+                    <Player
+                      episodeId={`ep=${currentEpisode.mal_id}`}
+                      currentEp={{
+                        episodeNumber: currentEpisode.mal_id,
+                        isFiller: currentEpisode.filler
+                      }}
+                      changeEpisode={handleChangeEpisode}
+                      hasNextEp={episodes.findIndex(ep => ep.mal_id === currentEpisode.mal_id) < episodes.length - 1}
+                      hasPrevEp={episodes.findIndex(ep => ep.mal_id === currentEpisode.mal_id) > 0}
+                    />
+                  ) : (
+                    <div className="w-full aspect-video bg-white/5 rounded-[2rem] border border-white/10 flex items-center justify-center">
+                      <p className="text-muted-foreground font-bold uppercase tracking-widest">Select an episode to start watching</p>
+                    </div>
+                  )}
+
+                  {episodes.length === 0 && (
+                    <div className="text-center py-10 text-muted-foreground font-bold uppercase tracking-widest">
+                      Loading episodes...
+                    </div>
+                  )}
+
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                    {episodes.map((ep) => (
+                      <button
+                        key={ep.mal_id}
+                        onClick={() => setCurrentEpisode(ep)}
+                        className={cn(
+                          "p-4 rounded-2xl border transition-all text-left group relative overflow-hidden hover:scale-105 active:scale-95",
+                          currentEpisode?.mal_id === ep.mal_id
+                            ? "bg-primary text-white border-primary shadow-lg shadow-primary/20"
+                            : "bg-white/5 border-white/10 hover:border-primary/50 hover:bg-white/10"
+                        )}
+                      >
+                        <div className="flex flex-col gap-1 relative z-10">
+                          <span className={cn("text-[10px] font-black uppercase tracking-widest", currentEpisode?.mal_id === ep.mal_id ? "text-white/80" : "text-muted-foreground")}>
+                            Episode {ep.mal_id}
+                          </span>
+                          <span className="font-bold line-clamp-1 text-sm">{ep.title || `Episode ${ep.mal_id}`}</span>
+                        </div>
+                        {ep.filler && (
+                          <span className="absolute top-2 right-2 w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_10px_rgba(239,68,68,0.5)]" title="Filler" />
+                        )}
+                      </button>
+                    ))}
+                  </div>
                 </motion.div>
               )}
 
@@ -499,8 +587,3 @@ export default function AnimeDetailView({ anime, characters }: AnimeDetailViewPr
       </div>
     );
   }
-
-
-
-
-

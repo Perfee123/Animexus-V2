@@ -8,9 +8,9 @@ import { Github, Linkedin, Mail, MessageSquare, ExternalLink } from 'lucide-reac
 
 export default function ContactPage() {
   const contactInfo = {
-    name: "Perfee",
-    github: "https://github.com/Perfee123",
-    linkedin: "https://www.linkedin.com/in/dulketh-dinhas/",
+    name: "AshGen",
+    github: "https://github.com/AshGen927",
+    linkedin: "https://www.linkedin.com/in/ashin-guwaneth-hettige/",
   };
 
   return (
@@ -61,7 +61,7 @@ export default function ContactPage() {
                       </div>
                       <div>
                         <p className="text-sm font-bold text-white">GitHub</p>
-                        <p className="text-xs text-muted-foreground">Perfee123</p>
+                        <p className="text-xs text-muted-foreground">AshGen</p>
                       </div>
                     </div>
                     <ExternalLink size={16} className="text-muted-foreground group-hover:text-primary transition-colors" />
@@ -78,7 +78,7 @@ export default function ContactPage() {
                       </div>
                       <div>
                         <p className="text-sm font-bold text-white">LinkedIn</p>
-                        <p className="text-xs text-muted-foreground">dulketh-dinhas</p>
+                        <p className="text-xs text-muted-foreground">ashin-guwaneth-hettige</p>
                       </div>
                     </div>
                     <ExternalLink size={16} className="text-muted-foreground group-hover:text-primary transition-colors" />

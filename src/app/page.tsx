@@ -1,3 +1,4 @@
+
 import { getTopAnime, getNewestHighRatedAnime } from "../lib/jikan";
 import Navigation from "../components/sections/navigation";
 import MaintenanceBanner from "../components/sections/maintenance-banner";

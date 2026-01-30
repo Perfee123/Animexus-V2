@@ -14,8 +14,8 @@ const InfoCards = () => {
         bg: "bg-primary/5"
       },
       {
-        title: "About Animexus",
-        description: "Animexus is your premium gateway to the world of anime. We provide up-to-date information on trending titles, ratings, and detailed character insights.",
+        title: "About Toonashi",
+        description: "Toonashi is your premium gateway to the world of anime. We provide up-to-date information on trending titles, ratings, and detailed character insights.",
         icon: Zap,
         color: "text-secondary",
         bg: "bg-secondary/5"
