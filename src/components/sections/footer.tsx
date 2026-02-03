@@ -10,21 +10,24 @@ const Footer = () => {
             <div className="md:col-span-2 space-y-6">
               <Link href="/" className="flex items-center gap-2">
                 <span className="font-bold tracking-tighter text-white text-xl">
-                  Anime<span className="text-primary">xus</span>
+                  Toon<span className="text-primary">ashi</span>
                 </span>
               </Link>
               <p className="text-muted-foreground text-sm max-w-xs leading-relaxed">
                 Your ultimate nexus for anime discovery. Explore trending titles, track your favorites, and dive deep into character insights.
               </p>
               <div className="flex items-center gap-4">
-                <a href="https://github.com/Perfee123" target="_blank" className="p-2 rounded-full bg-white/5 border border-white/10 text-muted-foreground hover:text-primary hover:border-primary transition-all">
+                <a href="https://github.com/AshGen927" target="_blank" className="p-2 rounded-full bg-white/5 border border-white/10 text-muted-foreground hover:text-primary hover:border-primary transition-all">
                   <Github size={20} />
                 </a>
-                <a href="https://www.linkedin.com/in/dulketh-dinhas/" target="_blank" className="p-2 rounded-full bg-white/5 border border-white/10 text-muted-foreground hover:text-primary hover:border-primary transition-all">
+                <a href="https://www.linkedin.com/in/ashin-guwaneth-hettige/" target="_blank" className="p-2 rounded-full bg-white/5 border border-white/10 text-muted-foreground hover:text-primary hover:border-primary transition-all">
                   <Linkedin size={20} />
                 </a>
-                <a href="https://x.com/PERFEE123" target="_blank" className="p-2 rounded-full bg-white/5 border border-white/10 text-muted-foreground hover:text-primary hover:border-primary transition-all">
+                <a href="https://x.com/HettigeAsh95297" target="_blank" className="p-2 rounded-full bg-white/5 border border-white/10 text-muted-foreground hover:text-primary hover:border-primary transition-all">
                   <Twitter size={20} />
+                </a>
+                <a href="mailto:ashgen9275336@gmail.com" target="_blank" className="p-2 rounded-full bg-white/5 border border-white/10 text-muted-foreground hover:text-primary hover:border-primary transition-all">
+                  <Mail size={20} />
                 </a>
               </div>
             </div>
@@ -52,8 +55,8 @@ const Footer = () => {
                   </div>
                 </div>
                 <p className="text-muted-foreground text-[10px] leading-relaxed">
-                  Last updated: Dec 10, 2025<br />
-                  Version: V2.0.5
+                  Last updated: Jan 30, 2026<br />
+                  Version: V2.2.0
                 </p>
               </div>
             </div>
@@ -61,7 +64,7 @@ const Footer = () => {
         
         <div className="mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-muted-foreground text-[10px] uppercase tracking-widest font-bold">
-            © 2025 Perfee. All rights reserved.
+            © 2026 AshGen. All rights reserved.
           </p>
           <div className="flex gap-6">
             <Link href="/privacy" className="text-muted-foreground text-[10px] hover:text-white transition-colors">PRIVACY POLICY</Link>
@@ -74,7 +77,3 @@ const Footer = () => {
 };
 
 export default Footer;
-
-
-
-

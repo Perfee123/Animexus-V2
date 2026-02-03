@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Star, Play, EyeOff, AlertTriangle, AlertCircle } from 'lucide-react';
@@ -39,12 +39,17 @@ export function AnimeCard({ anime }: AnimeCardProps) {
   const { nsfwFilter } = useSettings();
   const [showNsfwAnyway, setShowNsfwAnyway] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
   
   const isNSFW = anime.genres?.some(g => ['Hentai', 'Erotica'].includes(g.name)) || 
                  anime.rating?.includes('R+') || 
                  anime.rating?.includes('Rx');
 
-  const shouldBlur = isNSFW && nsfwFilter && !showNsfwAnyway;
+  const shouldBlur = isMounted && isNSFW && nsfwFilter && !showNsfwAnyway;
 
   const handleNsfwClick = (e: React.MouseEvent) => {
     if (shouldBlur) {
@@ -176,7 +181,3 @@ export function AnimeCard({ anime }: AnimeCardProps) {
     </>
   );
 }
-
-
-
-

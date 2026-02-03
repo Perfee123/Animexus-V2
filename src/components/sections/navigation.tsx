@@ -3,8 +3,9 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, Heart, MessageCircle, RefreshCw, Home } from 'lucide-react';
+import { Menu, X, Heart, MessageCircle, RefreshCw, Home, List } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { SignedIn, SignedOut, UserButton, SignInButton } from '@clerk/nextjs';
 import { cn } from '@/lib/utils';
 
 const Navigation = () => {
@@ -14,6 +15,7 @@ const Navigation = () => {
     const navLinks = [
       { name: 'Home', href: '/', icon: Home },
       { name: 'Explore', href: '/explore', icon: Heart },
+      { name: 'My List', href: '/my-list', icon: List },
       { name: 'Contact', href: '/contact', icon: MessageCircle },
       { name: 'Updates', href: '/updates', icon: RefreshCw },
     ];
@@ -27,7 +29,7 @@ const Navigation = () => {
             className="flex items-center gap-2 group transition-all"
           >
             <span className="font-bold tracking-tighter text-white text-2xl">
-              Anime<span className="text-primary">xus</span>
+              Toon<span className="text-primary">ashi</span>
             </span>
           </Link>
 
@@ -63,13 +65,21 @@ const Navigation = () => {
 
         {}
         <div className="flex items-center gap-3">
-          <Link 
-            href="/my-list"
-            className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary border border-primary/20 text-sm font-semibold transition-all hover:bg-primary/20 active:scale-95"
-          >
-            <Heart size={16} fill="currentColor" />
-            <span>My List</span>
-          </Link>
+          <SignedOut>
+            {/* Replace Link with SignInButton for popup modal */}
+            <SignInButton mode="modal">
+              <button
+                className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary border border-primary/20 text-sm font-semibold transition-all hover:bg-primary/20 active:scale-95"
+                aria-label="Login"
+              >
+                <span>Login</span>
+              </button>
+            </SignInButton>
+          </SignedOut>
+          
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
           
           {}
           <button 
@@ -130,15 +140,20 @@ const Navigation = () => {
                   })}
                 </div>
 
-                <div className="mt-auto">
-                  <Link 
-                    href="/my-list"
-                    onClick={() => setIsOpen(false)}
-                    className="flex items-center justify-center gap-3 w-full py-4 rounded-xl bg-primary/10 text-primary border border-primary/20 font-bold transition-all active:scale-95"
-                  >
-                    <Heart size={20} fill="currentColor" />
-                    <span>My List</span>
-                  </Link>
+                <div className="mt-auto flex flex-col gap-3">
+                  <SignedOut>
+                    <SignInButton mode="modal">
+                      <button
+                        className="flex items-center justify-center gap-3 w-full py-4 rounded-xl bg-primary/10 text-primary border border-primary/20 font-bold transition-all active:scale-95"
+                        aria-label="Login"
+                      >
+                        <span>Login</span>
+                      </button>
+                    </SignInButton>
+                  </SignedOut>
+                  <SignedIn>
+                    <UserButton />
+                  </SignedIn>
                 </div>
               </motion.div>
             </>
@@ -150,7 +165,3 @@ const Navigation = () => {
 };
 
 export default Navigation;
-
-
-
-
