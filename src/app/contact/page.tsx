@@ -4,15 +4,14 @@ import React from 'react';
 import Navigation from '../../components/sections/navigation';
 import Footer from '../../components/sections/footer';
 import { motion } from 'framer-motion';
-// Added MessageSquare and Hash for Discord styling if needed
-import { Github, Linkedin, Mail, MessageSquare, ExternalLink, Disc } from 'lucide-react';
+import { Github, Linkedin, Mail, MessageSquare, ExternalLink } from 'lucide-react';
 
 export default function ContactPage() {
   const contactInfo = {
     name: "Perfee",
     github: "https://github.com/Perfee123",
     linkedin: "https://www.linkedin.com/in/dulketh-dinhas/",
-    discord: "https://discord.com/users/perfee123", // Note: Direct links often require a User ID, but this is a placeholder
+    discord: "https://discord.com/users/733667927261184080",
   };
 
   return (
@@ -52,7 +51,6 @@ export default function ContactPage() {
                 </div>
 
                 <div className="space-y-4">
-                  {/* GitHub */}
                   <a 
                     href={contactInfo.github} 
                     target="_blank" 
@@ -71,8 +69,13 @@ export default function ContactPage() {
                     <ExternalLink size={16} className="text-muted-foreground group-hover:text-primary transition-colors" />
                   </a>
 
-                  {/* Discord - New Addition */}
-                  <div className="flex items-center justify-between p-4 rounded-full bg-white/5 border border-white/10 hover:border-primary/50 transition-all group cursor-pointer">
+                  {/* Discord Link */}
+                  <a 
+                    href={contactInfo.discord} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between p-4 rounded-full bg-white/5 border border-white/10 hover:border-primary/50 transition-all group"
+                  >
                     <div className="flex items-center gap-4">
                       <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
                         <MessageSquare size={24} />
@@ -82,8 +85,8 @@ export default function ContactPage() {
                         <p className="text-xs text-muted-foreground">perfee123</p>
                       </div>
                     </div>
-                    <span className="text-[10px] uppercase tracking-widest text-muted-foreground group-hover:text-primary transition-colors font-bold">Add Me</span>
-                  </div>
+                    <ExternalLink size={16} className="text-muted-foreground group-hover:text-primary transition-colors" />
+                  </a>
 
                   {/* <a 
                     href={contactInfo.linkedin} 
