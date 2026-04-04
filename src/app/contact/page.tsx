@@ -67,7 +67,7 @@ export default function ContactPage() {
                     <ExternalLink size={16} className="text-muted-foreground group-hover:text-primary transition-colors" />
                   </a>
 
-                  <a 
+                  {/* <a 
                     href={contactInfo.linkedin} 
                     target="_blank" 
                     className="flex items-center justify-between p-4 rounded-full bg-white/5 border border-white/10 hover:border-primary/50 transition-all group"
@@ -82,7 +82,7 @@ export default function ContactPage() {
                       </div>
                     </div>
                     <ExternalLink size={16} className="text-muted-foreground group-hover:text-primary transition-colors" />
-                  </a>
+                  </a> */}
                 </div>
               </motion.div>
 
