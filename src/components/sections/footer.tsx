@@ -20,9 +20,9 @@ const Footer = () => {
                 <a href="https://github.com/Perfee123" target="_blank" className="p-2 rounded-full bg-white/5 border border-white/10 text-muted-foreground hover:text-primary hover:border-primary transition-all">
                   <Github size={20} />
                 </a>
-                <a href="https://www.linkedin.com/in/dulketh-dinhas/" target="_blank" className="p-2 rounded-full bg-white/5 border border-white/10 text-muted-foreground hover:text-primary hover:border-primary transition-all">
+                {/* <a href="https://www.linkedin.com/in/dulketh-dinhas/" target="_blank" className="p-2 rounded-full bg-white/5 border border-white/10 text-muted-foreground hover:text-primary hover:border-primary transition-all">
                   <Linkedin size={20} />
-                </a>
+                </a> */}
                 <a href="https://x.com/PERFEE123" target="_blank" className="p-2 rounded-full bg-white/5 border border-white/10 text-muted-foreground hover:text-primary hover:border-primary transition-all">
                   <Twitter size={20} />
                 </a>
