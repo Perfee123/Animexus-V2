@@ -3,6 +3,7 @@ import "./globals.css";
 import Script from "next/script";
 import { Toaster } from "sonner";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   title: "Animexus | Your Premium Anime Destination",
@@ -20,6 +21,7 @@ export default function RootLayout({
           <Toaster richColors closeButton position="top-right" theme="dark" />
         {children}
         <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );
