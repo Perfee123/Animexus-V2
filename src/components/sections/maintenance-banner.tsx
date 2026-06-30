@@ -22,7 +22,7 @@ const MaintenanceBanner = () => {
           aria-hidden="true"
         />
         <p className="text-xs font-bold uppercase tracking-widest leading-tight">
-          Status: Might be discontinued
+          Status: Experiencing slowdown
         </p>
       </motion.div>
     </div>
