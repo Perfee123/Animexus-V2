@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Script from "next/script";
 import { Toaster } from "sonner";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
@@ -19,6 +20,7 @@ export default function RootLayout({
         <body className="antialiased">
           <Toaster richColors closeButton position="top-right" theme="dark" />
         {children}
+        <SpeedInsights />
         <Analytics />
       </body>
     </html>
